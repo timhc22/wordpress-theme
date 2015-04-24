@@ -1,0 +1,217 @@
+$navColorMobile: #353333;
+$navColor: #fff; // nav bar
+$navColor2: #484646; // nav bar
+//$navColor: #3A1A05; // nav bar
+$navTextColor: #000; // nav text
+//$navTextColor2: #554E49; // nav text
+$navButtonColor: #F7F1EC; // button
+$navTextHoverColor: #7e7c7b; // drop down hover
+$navBorder: 1px solid rgba(225, 219, 214, 0.42); // drop down borders
+$navMinHeight: 54px;
+$navZIndex: 9999;
+
+.navigation {
+
+    @if variable-exists(navColorMobile) {
+        background: $navColorMobile;
+    }
+    width:100%;
+    min-height: $navMinHeight;
+    display:block;
+    box-sizing: border-box;
+    line-height:20px;
+    z-index: $navZIndex;
+    position:fixed; //if you want a fixed header
+    border-bottom: $navBorder;
+
+    &__header {
+        box-sizing: border-box;
+        float: left;
+        //display: inline-block; //use instead of min-height?
+
+        // Logo
+        .logo {
+            float: left;
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: bold;
+            color: $navTextColor;
+            padding: 20px 0px 0px 0px;
+        }
+    }
+
+    @media (#{$bp-larger-than-desktop}) {
+        @if variable-exists(navColor) {
+            background: $navColor;
+        }
+
+        &--nav-color-two {
+            background-color: $navColor2;
+        }
+    }
+
+    &__nav {
+        min-height:$navMinHeight;
+
+        [type="checkbox"] {
+            display: none;
+        }
+
+        // Dropdown menu button
+        //––––––––––––––––––––––––––––
+        > label {
+            display: block;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            padding: 6px;
+        }
+
+        > label:after {
+            content: '';
+            display: block;
+
+            width: 30px;
+            height: 5px;
+            background: $navButtonColor;
+            margin: 7px 5px;
+            box-shadow: 0px 10px 0px $navButtonColor, 0px 20px 0px $navButtonColor;
+        }
+        //––––––––––––––––––––––––––––
+        // End dropdown menu button
+
+        // Dropdown when 'checkbox' is clicked (i.e. label is clicked)
+        [type="checkbox"]:checked ~ ul {
+            display: block;
+        }
+
+        // Don't show mobile menu on devices which don't need it
+        @media (#{$bp-larger-than-desktop}) {
+            [type="checkbox"], label {
+                display: none;
+            }
+        }
+
+        ul {
+            margin: 20px 0px 20px 0px;
+            list-style: none;
+            display: none;
+            float:right;
+            width:100%;
+            position: relative;
+            z-index: $navZIndex;
+
+            @media (#{$bp-larger-than-desktop}) {
+                display: block;
+                margin: 0px;
+                width: auto;
+            }
+
+            li {
+                float: left;
+                position: relative;
+                margin-bottom: 0px; //override skeleton style
+                width: 100%;
+                display: block;
+
+                @media (#{$bp-larger-than-desktop}) {
+                    width: auto;
+                }
+
+                .down-arrow {
+                    padding: 15px;
+                    width: 25px;
+                    height: 25px;
+                }
+
+                a {
+                    border-bottom: $navBorder; //todo make variable
+                    color: $navTextColor;
+                    cursor: pointer;
+                    display: block;
+                    text-decoration: none;
+                    position: relative;
+                    padding: 17px 17px;
+                }
+
+                @media (#{$bp-larger-than-desktop}) {
+                    a {
+                        border-bottom: none;
+                    }
+                }
+
+                // Down arrow for submenu
+                > label {
+                    display: block;
+                    width: 100%;
+                    cursor: pointer;
+                    position: absolute;
+                    right: 0px;
+                    top: 0px;
+                    text-align:right;
+                    margin: 0px;
+                }
+
+                @media (#{$bp-larger-than-desktop}) {
+                    [type="checkbox"], label {
+                        display: none;
+                    }
+
+                    // Display for submenu
+                    &:hover {
+                        ul {
+                            display: block;
+                        }
+
+                        > a {
+                            color: $navTextHoverColor;
+                        }
+                    }
+                }
+
+                // SubNav
+                //––––––––––––––––––––––––––––––––––––––––––––––––––
+                ul {
+                    display: none;
+                    margin: 0px 0px 0px 0px;
+                    z-index: $navZIndex;
+
+                    @media (#{$bp-larger-than-desktop}) {
+                        display: none;
+                        position: absolute;
+                        padding: 0px;
+                        min-width:150px;
+
+                        @if variable-exists(navColor) {
+                            background-color: $navColor;
+                        }
+
+                        .navigation--nav-color-two & {
+                            background-color: $navColor2;
+                        }
+
+                    }
+
+                    li {
+                        text-indent:30px;
+
+                        @media (#{$bp-larger-than-desktop}) {
+                            width: 100%;
+                            text-align: left;
+                            text-indent:0px;
+
+                            a{
+                                border-bottom: $navBorder;
+                            }
+                        }
+                    }
+                }
+                //––––––––––––––––––––––––––––––––––––––––––––––––––––
+                // End Subnav
+            }
+        }// End ul
+    }// End nav
+}

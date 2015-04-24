@@ -12,4 +12,25 @@
 // bower:scss
 // endbower
 
-@import "layouts/_home";
+
+@import 'common/normalize';
+@import 'common/skeleton';
+
+@import 'common/mixins';
+@import 'common/typography';
+@import 'layouts/menu';
+@import 'layouts/home';
+@import 'layouts/footer';
+@import 'layouts/various';
+
+
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,700,300);
+$font-family-base: 'Raleway', sans-serif;
+// Import fontawesome
+//@import "font-awesome";
+////
+
+
+.icon {
+    padding: 10px;
+}

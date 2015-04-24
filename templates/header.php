@@ -1,23 +1,33 @@
 <?php use Roots\Sage\Nav\NavWalker; ?>
 
-<header class="banner navbar navbar-default navbar-static-top" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only"><?= __('Toggle navigation', 'sage'); ?></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="<?= esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
-    </div>
+<header class="navigation js-navigation">
+    <div class="container">
+        <div class="navigation__header">
+            <a href="<?= esc_url(home_url('/')); ?>" class="logo"><?php bloginfo('name'); ?></a>
+        </div>
 
-    <nav class="collapse navbar-collapse" role="navigation">
-      <?php
-      if (has_nav_menu('primary_navigation')) :
-        wp_nav_menu(['theme_location' => 'primary_navigation', 'walker' => new NavWalker(), 'menu_class' => 'nav navbar-nav']);
-      endif;
-      ?>
-    </nav>
-  </div>
+        <nav class="navigation__nav">
+            <input type="checkbox" id="nav" class="js-nav-checkbox" /><label for="nav"></label>
+            <?php
+            if (has_nav_menu('primary_navigation')) :
+                wp_nav_menu(['theme_location' => 'primary_navigation', 'walker' => new NavWalker(), 'menu_class' => 'nav navbar-nav']);
+            endif;
+            ?>
+<!--            <ul>-->
+<!--                <li><a href="/">Home</a></li>-->
+<!--                <li>-->
+<!--                    <a href="#">Work</a>-->
+<!--                    <label for="sub-dropdown" class="toggle-sub" onclick><img class="down-arrow" src="./images/down-arrow.png"></label>-->
+<!--                    <input type="checkbox" id="sub-dropdown" class="js-nav-checkbox">-->
+<!--                    <ul class="navigation__subnav">-->
+<!--                        <li><a href="/web">Web</a></li>-->
+<!--                        <li><a href="/print">Print</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--                <li><a href="/service">Service</a></li>-->
+<!--                <li><a href="#">Blog</a></li>-->
+<!--                <li><a href="#">Contact</a></li>-->
+<!--            </ul>-->
+        </nav>
+    </div>
 </header>

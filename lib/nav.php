@@ -33,7 +33,7 @@ class NavWalker extends \Walker_Nav_Menu {
 
   // @codingStandardsIgnoreStart
   function start_lvl(&$output, $depth = 0, $args = []) {
-    $output .= "\n<ul class=\"dropdown-menu\">\n";
+    $output .= "\n<ul class=\"navigation__subnav\">\n";
   }
 
   function start_el(&$output, $item, $depth = 0, $args = [], $id = 0) {
@@ -41,11 +41,16 @@ class NavWalker extends \Walker_Nav_Menu {
     parent::start_el($item_html, $item, $depth, $args);
 
     if ($item->is_dropdown && ($depth === 0)) {
-      $item_html = str_replace('<a', '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"', $item_html);
-      $item_html = str_replace('</a>', ' <b class="caret"></b></a>', $item_html);
-    } elseif (stristr($item_html, 'li class="divider')) {
+//      $item_html = str_replace('<a', '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"', $item_html);
+      $item_html = str_replace('</a>',
+          '</a>
+           <label for="sub-dropdown" class="toggle-sub" onclick><img class="down-arrow" src="' . get_template_directory_uri() . '/dist/images/down-arrow.png"></label>
+           <input type="checkbox" id="sub-dropdown" class="js-nav-checkbox">',
+          $item_html);
+
+    } elseif (stristr($item_html, 'li class="divider')) { //todo may not be needed
       $item_html = preg_replace('/<a[^>]*>.*?<\/a>/iU', '', $item_html);
-    } elseif (stristr($item_html, 'li class="dropdown-header')) {
+    } elseif (stristr($item_html, 'li class="dropdown-header')) { //todo may not be needed
       $item_html = preg_replace('/<a[^>]*>(.*)<\/a>/iU', '$1', $item_html);
     }
 

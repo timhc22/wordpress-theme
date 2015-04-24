@@ -23,6 +23,38 @@
     'common': {
       init: function() {
         // JavaScript to be fired on all pages
+
+
+
+
+      // Menu
+      $(document).click(function(event) {
+          //jquery enhancement for menu, close if click off the menu
+          if(!$(event.target).closest('.js-navigation').length) {
+              $(".js-nav-checkbox").prop('checked', false);
+          }
+      });
+
+
+      //change navbar colour when scrolling, unless the body has a class saying not to change
+      if (!$('body').hasClass('js-navbar-nochange')) {
+          $(window).scroll(function () {
+              var scroll = $(window).scrollTop();
+
+              if (scroll >= 100) {
+                  $(".js-navigation").addClass("navigation--nav-color-two");
+              } else {
+                  $(".js-navigation").removeClass("navigation--nav-color-two");
+              }
+          });
+      } else {
+          $(".js-navigation").addClass("navigation--nav-color-two");
+      }
+      // End Menu
+
+
+
+
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
