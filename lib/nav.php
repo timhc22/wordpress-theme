@@ -44,7 +44,7 @@ class NavWalker extends \Walker_Nav_Menu {
 //      $item_html = str_replace('<a', '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"', $item_html);
       $item_html = str_replace('</a>',
           '</a>
-           <label for="sub-dropdown" class="toggle-sub" onclick><img class="down-arrow" src="' . get_template_directory_uri() . '/dist/images/down-arrow.png"></label>
+           <label for="sub-dropdown" class="toggle-sub noselect" onclick><img class="down-arrow" src="' . get_template_directory_uri() . '/dist/images/down-arrow.png"></label>
            <input type="checkbox" id="sub-dropdown" class="js-nav-checkbox">',
           $item_html);
 

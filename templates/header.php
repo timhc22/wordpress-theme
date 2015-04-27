@@ -7,7 +7,7 @@
         </div>
 
         <nav class="navigation__nav">
-            <input type="checkbox" id="nav" class="js-nav-checkbox" /><label for="nav"></label>
+            <input type="checkbox" id="nav" class="js-nav-checkbox noselect" /><label for="nav"></label>
             <?php
             if (has_nav_menu('primary_navigation')) :
                 wp_nav_menu(['theme_location' => 'primary_navigation', 'walker' => new NavWalker(), 'menu_class' => 'nav navbar-nav']);
